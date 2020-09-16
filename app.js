@@ -1,5 +1,6 @@
 const addForm = document.querySelector(".add");
 const todoList = document.querySelector(".todos");
+const search = document.querySelector(".search input");
 
 const generateTemplate = (todo) => {
   const html = `
@@ -26,4 +27,19 @@ todoList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete")) {
     e.target.parentElement.remove();
   }
+});
+
+const filterTodos = (term) => {
+  Array.from(todoList.children)
+    .filter((todo) => !todo.textContent.toLocaleLowerCase().includes(term))
+    .forEach((todo) => todo.classList.add("filtered"));
+
+  Array.from(todoList.children)
+    .filter((todo) => todo.textContent.toLocaleLowerCase().includes(term))
+    .forEach((todo) => todo.classList.remove("filtered"));
+};
+
+search.addEventListener("keyup", () => {
+  const term = search.value.trim().toLowerCase();
+  filterTodos(term);
 });

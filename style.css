@@ -20,3 +20,6 @@ input[type="text"]:focus {
 .delete:hover {
   color: rgba(253, 50, 50, 0.897);
 }
+.filtered {
+  display: none !important;
+}
